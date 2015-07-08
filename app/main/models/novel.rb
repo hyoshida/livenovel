@@ -7,7 +7,7 @@ class Novel < Volt::Model
 
   permissions(:update, :delete) do
     # Only the person who created the post can delete or update it
-    deny unless owner?
+    # deny unless owner?
   end
 
   def body=(body)

@@ -1,3 +1,9 @@
-<form>
-  <textarea class="new-novel form-control" placeholder="What needs to be done?" autofocus>{{ body }}</textarea>
-</form>
+{{ if owner? }}
+  <form>
+    <textarea class="new-novel form-control" placeholder="What needs to be done?" autofocus>{{ body }}</textarea>
+  </form>
+{{ else }}
+  <p>
+    {{ body }}
+  </p>
+{{ end }}

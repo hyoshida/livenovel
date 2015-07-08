@@ -5,6 +5,9 @@ gem 'volt', '0.9.3'
 # volt uses mongo as the default data store.
 gem 'volt-mongo', '0.1.0'
 
+# User templates for login, signup, and logout menu.
+gem 'volt-user_templates', '~> 0.1.3'
+
 # Use rbnacl for message bus encrpytion
 # (optional, if you don't need encryption, disable in app.rb and remove)
 #

@@ -2,8 +2,20 @@
   Todos Demo App
 
 <:Body>
+  <header>
+    <ul>
+      {{ if Volt.current_user? }}
+        <li><a href="/novel/new">New Novel</a></li>
+      {{ end }}
+      <:user_templates:menu />
+    </ul>
+  </header>
+
+  <hr />
+
   <section class="novel">
     {{ store.novels.each do |novel| }}
       <:novel model="{{ novel }}" parent="{{ self }}" />
+      <hr />
     {{ end }}
   </section>
