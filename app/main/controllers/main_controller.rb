@@ -4,57 +4,11 @@ module Main
   class MainController < Volt::ModelController
     model :store
 
-    # Use the route to filter which todos we're showing
-    def filtered_todos
-      query = store.todos
-      case params._filter
-      when 'completed'
-        query = query.where(completed: true)
-      when 'active'
-        query = query.where({'$or' => [{completed: false}, {completed: nil}]})
-      end
-
-      query
-    end
-
-    def complete
-      todos.count(&:completed)
-    end
-
-    def incomplete
-      Promise.when(todos.size, complete).then do |size, complete|
-        size - complete
+    def index
+      store.novels.first.then do |novel|
+        store.novels << Novel.new if novel.nil?
       end
     end
-
-    # Remove all completed
-    def clear_completed
-      todos.all.reverse.select(&:completed).each(&:destroy)
-    end
-
-    # Binding for if the all complete checkbox should be checked.
-    def all_complete
-      # incomplete returns a promise, so we check if its zero inside of a .then
-      # block.
-      incomplete.then { |val| val == 0 }
-    end
-
-    # Called when the complete all checkbox is checked, change the state of all
-    # todos to val (true or false)
-    def all_complete=(val)
-      todos.all.each {|todo| todo._completed = val }
-    end
-
-    # Return true if there are any todos
-    def any_todos?
-      todos.size.then {|s| s > 0 }
-    end
-
-    # return true if any todos are complete
-    def any_complete?
-      complete.then {|c| c > 0 }
-    end
-
 
     private
 
@@ -63,12 +17,6 @@ module Main
     # on the params._component, params._controller, and params._action values.
     def main_path
       "#{params._component || 'main'}/#{params._controller || 'main'}/#{params._action || 'index'}"
-    end
-
-    # Determine if the current nav component is the active one by looking
-    # at the first part of the url against the href attribute.
-    def active_tab?
-      url.path.split('/')[1] == attrs.href.split('/')[1]
     end
   end
 end

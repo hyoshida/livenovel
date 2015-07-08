@@ -376,3 +376,13 @@ html .clear-completed:active {
     bottom: 10px;
   }
 }
+
+textarea.new-novel {
+  margin-top: 20px;
+  width: 100%;
+  height: 600px;
+  border-radius: 3px;
+  border-color: #aaa;
+  outline: none;
+  font-size: larger;
+}

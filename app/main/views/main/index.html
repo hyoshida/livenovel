@@ -2,45 +2,8 @@
   Todos Demo App
 
 <:Body>
-  <section class="todoapp">
-    <header class="header">
-      <:volt:notices />
-      <h1>todos</h1>
-      <:new_todo />
-    </header>
-    {{ if any_todos? }}
-      <section class="main">
-
-        <input class="toggle-all" type="checkbox" checked="{{ all_complete }}">
-        <label for="toggle-all">Mark all as complete</label>
-        <ul class="todo-list">
-          {{ filtered_todos.each do |todo| }}
-            <:todo model="{{ todo }}" parent="{{ self }}" />
-          {{ end }}
-        </ul>
-
-      </section>
-
-      <footer class="footer">
-        <span class="todo-count">
-          <strong>{{ incomplete }}</strong>
-          item{{ if incomplete != 1 }}s{{ end }} left
-        </span>
-        <ul class="filters">
-          <:nav href="/">All</:nav>
-          <:nav href="/active">Active</:nav>
-          <:nav href="/completed">Completed</:nav>
-        </ul>
-        {{ if any_complete? }}
-          <button class="clear-completed" e-click="clear_completed">Clear completed</button>
-        {{ end }}
-      </footer>
+  <section class="novel">
+    {{ store.novels.each do |novel| }}
+      <:novel model="{{ novel }}" parent="{{ self }}" />
     {{ end }}
   </section>
-
-
-<:Nav>
-  <li>
-    <a class="{{ if active_tab? }}selected{{ end }}" href="{{ attrs.href }}">{{ yield }}</a>
-  </li>
-
