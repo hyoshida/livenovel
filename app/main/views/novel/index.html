@@ -1,6 +1,6 @@
 {{ if owner? }}
   <form>
-    <textarea class="new-novel form-control" placeholder="What needs to be done?" autofocus>{{ body }}</textarea>
+    <textarea class="new-novel form-control" placeholder="What needs to be done?" autofocus rows="{{ body.lines.size }}">{{ body }}</textarea>
   </form>
 {{ else }}
   <p>
