@@ -71,6 +71,8 @@ GEM
     rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    rb-kqueue (0.2.4)
+      ffi (>= 0.5.0)
     rbnacl (3.2.0)
       ffi
     rbnacl-libsodium (1.0.3)
@@ -153,6 +155,7 @@ DEPENDENCIES
   csso-rails (~> 0.3.4)
   opal-rspec (~> 0.4.2)
   poltergeist (~> 1.5.0)
+  rb-kqueue (>= 0.2)
   rbnacl
   rbnacl-libsodium
   rspec (~> 3.2.0)
